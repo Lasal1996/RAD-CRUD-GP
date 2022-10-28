@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
  
 const Record = (props) => (
  <tr>
@@ -27,19 +29,16 @@ export default function RecordList() {
  useEffect(() => {
    async function getRecords() {
      const response = await fetch(`http://localhost:5000/record/`);
- 
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
        window.alert(message);
        return;
      }
- 
      const records = await response.json();
      setRecords(records);
    }
- 
+
    getRecords();
- 
    return;
  }, [records.length]);
  
@@ -65,12 +64,26 @@ export default function RecordList() {
      );
    });
  }
+
  
  // This following section will display the table with the records of individuals.
  return (
-   <div>
-     <h3>Book Ordering</h3>
-     <table className="table table-striped" style={{ marginTop: 20 }}>
+<div>
+<nav class="navbar navbar-expand-xl navbar-light bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="././favicin.pngnavbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav" style={{margin:5}}>
+          <NavLink className="nav-link" to="/">
+            <button class="btn btn-outline-light" style={{marginLeft: 20, fontSize: 15}} href=".png">Home</button>
+          </NavLink>
+          </div>
+        </div>
+      </nav>
+   <div class="col-xs-1" align="center" style={{width: 1500}}>
+     <h1>Book Ordering</h1>
+     <table className="table table-hover" style={{ marginTop: 20}}>
        <thead>
          <tr>
            <th>Order Number</th>
@@ -82,6 +95,13 @@ export default function RecordList() {
        </thead>
        <tbody>{recordList()}</tbody>
      </table>
+     <div class="d-flex flex-row-reverse">
+      <NavLink className="nav-link" to="/create">
+     <button class="btn btn-success d-flex flex-row" style={{marginLeft: 20, fontSize: 15 ,fontWeight:"bold"}}>+ Add Record</button>
+     </NavLink>
    </div>
+   </div>
+</div>
  );
 }
+

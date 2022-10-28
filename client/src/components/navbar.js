@@ -1,38 +1,32 @@
 import React from "react";
- 
+import { NavLink } from "react-router-dom";
+
 // We import bootstrap to make our application look better.
 import "bootstrap/dist/css/bootstrap.css";
  
 // We import NavLink to utilize the react router.
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
  
-// Here, we display our Navbar
 export default function Navbar() {
  return (
    <div>
-     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-       <button
-         className="navbar-toggler"
-         type="button"
-         data-toggle="collapse"
-         data-target="#navbarSupportedContent"
-         aria-controls="navbarSupportedContent"
-         aria-expanded="false"
-         aria-label="Toggle navigation"
-       >
-         <span className="navbar-toggler-icon"></span>
-       </button>
- 
-       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-         <ul className="navbar-nav ml-auto">
-           <li className="nav-item">
-             <NavLink className="nav-link" to="/create">
-               Create Record
-             </NavLink>
-           </li>
-         </ul>
-       </div>
-     </nav>
+      <nav class="navbar navbar-expand-xl navbar-light bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="././favicin.pngnavbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav" style={{margin:5}}>
+            <NavLink className="nav-link" to="/">
+              <button class="btn btn-outline-light" style={{marginLeft: 20, fontSize: 15}} href=".png">Home</button>
+            </NavLink>
+            
+            <NavLink className="nav-link" to="/recordList">
+              <button class="btn btn-outline-light" style={{marginLeft: 40, fontSize: 15}}  href="././favicin.png">Records</button>
+            </NavLink>
+          </div>
+        </div>
+      </nav>
    </div>
  );
 }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
+import Navbar from "./navbar";
+
  
 export default function Edit() {
  const [form, setForm] = useState({
@@ -68,8 +70,10 @@ export default function Edit() {
  
  // This following section will display the form that takes input from the user to update the data.
  return (
-   <div>
-     <h3>Update Record</h3>
+  <div>
+      <Navbar />
+  <div class="col-xs-1" align="left" style={{width: 1300}}>
+     <h1>Update Record</h1>
      <form onSubmit={onSubmit}>
        <div className="form-group">
          <label htmlFor="name">Order Number: </label>
@@ -81,6 +85,7 @@ export default function Edit() {
            onChange={(e) => updateForm({ name: e.target.value })}
          />
        </div>
+
        <div className="form-group">
          <label htmlFor="position">Customer ID: </label>
          <input
@@ -91,6 +96,7 @@ export default function Edit() {
            onChange={(e) => updateForm({ position: e.target.value })}
          />
        </div>
+       
        <div className="form-group">
          <label htmlFor="delivery">Customer Delivery Address: </label>
          <input
@@ -123,5 +129,7 @@ export default function Edit() {
        </div>
      </form>
    </div>
+</div>
+   
  );
 }
