@@ -17,7 +17,7 @@ export default function Navbar() {
         
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav" style={{margin:5}}>
-            <NavLink className="nav-link" to="/">
+            <NavLink className="nav-link" to="/home">
               <button class="btn btn-outline-light" style={{marginLeft: 20, fontSize: 15}} href=".png">Home</button>
             </NavLink>
             

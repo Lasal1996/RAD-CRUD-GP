@@ -6,11 +6,11 @@ import Navbar from "./navbar";
  
 export default function Edit() {
  const [form, setForm] = useState({
-   name: "",
-   position: "",
-   delivery: "",
-   ContactNumber:"",
-   records: [],
+   StaffID4: "",
+   StaffName4: "",
+   StaffContact4: "",
+   StaffAddress4:"",
+   records4: [],
  });
  const params = useParams();
  const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function Edit() {
  useEffect(() => {
    async function fetchData() {
      const id = params.id.toString();
-     const response = await fetch(`http://localhost:5000/record/${params.id.toString()}`);
+     const response = await fetch(`http://localhost:5000/record4/${params.id.toString()}`);
  
      if (!response.ok) {
        const message = `An error has occurred: ${response.statusText}`;
@@ -26,14 +26,14 @@ export default function Edit() {
        return;
      }
  
-     const record = await response.json();
-     if (!record) {
-       window.alert(`Record with id ${id} not found`);
-       navigate("/recordList");
+     const record4 = await response.json();
+     if (!record4) {
+       window.alert(`Record4 with id ${id} not found`);
+       navigate("/");
        return;
      }
  
-     setForm(record);
+     setForm(record4);
    }
  
    fetchData();
@@ -51,10 +51,10 @@ export default function Edit() {
  async function onSubmit(e) {
    e.preventDefault();
    const editedPerson = {
-     name: form.name,
-     position: form.position,
-     delivery: form.delivery,
-     ContactNumber: form.ContactNumber,
+     StaffID4: form.StaffID4,
+     StaffName4: form.StaffName4,
+     StaffContact4: form.StaffContact4,
+     StaffAddress4: form.StaffAddress4,
    };
  
    // This will send a post request to update the data in the database.
@@ -66,7 +66,7 @@ export default function Edit() {
      },
    });
  
-   navigate("/recordList");
+   navigate("/recordList4");
  }
  
  // This following section will display the form that takes input from the user to update the data.
@@ -77,56 +77,58 @@ export default function Edit() {
      <h1>Update Record</h1>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="name">Order Number: </label>
+         <label htmlFor="name">Staff ID: </label>
          <input
            type="number"
            className="form-control"
-           id="name"
-           value={form.name}
-           onChange={(e) => updateForm({ name: e.target.value })}
+           id="StaffID4"
+           value={form.StaffID4}
+           onChange={(e) => updateForm({ StaffID4: e.target.value })}
          />
        </div>
 
        <div className="form-group">
-         <label htmlFor="position">Customer ID: </label>
+         <label htmlFor="StaffName4">Staff Name: </label>
          <input
            type="text"
            className="form-control"
-           id="position"
-           value={form.position}
-           onChange={(e) => updateForm({ position: e.target.value })}
+           id="StaffName4"
+           value={form.StaffName4}
+           onChange={(e) => updateForm({ StaffName4: e.target.value })}
          />
        </div>
        
        <div className="form-group">
-         <label htmlFor="delivery">Customer Delivery Address: </label>
+         <label htmlFor="StaffContact4">Staff Contact Number:</label>
          <input
-           type="text"
+           type="number"
            className="form-control"
-           id="delivery"
-           value={form.delivery}
-           onChange={(e) => updateForm({ delivery: e.target.value })}
+           id="StaffContact4"
+           value={form.StaffContact4}
+           onChange={(e) => updateForm({ StaffContact4: e.target.value })}
          />
        </div>
 
        <div className="form-group">
-         <label htmlFor="ContactNumber">Customer Contact Number: </label>
+         <label htmlFor="StaffAddress4">Staff Address: </label>
          <input
            type="text"
            className="form-control"
-           id="ContactNumber"
-           value={form.ContactNumber}
-           onChange={(e) => updateForm({ ContactNumber: e.target.value })}
+           id="StaffAddress4"
+           value={form.StaffAddress4}
+           onChange={(e) => updateForm({ StaffAddress4: e.target.value })}
          />
        </div>
        <br />
  
        <div className="form-group">
-                 <input
+        <NavLink className="nav-link" to="/recordList4">
+         <input
            type="submit"
            value="Update Record"
            className="btn btn-primary"
          />
+         </NavLink>
        </div>
      </form>
    </div>

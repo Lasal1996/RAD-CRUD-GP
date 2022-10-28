@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
  
-const Record = (props) => (
+const record3 = (props) => (
  <tr>
-   <td>{props.record.name}</td>
-   <td>{props.record.position}</td>
-   <td>{props.record.delivery}</td>
-   <td>{props.record.ContactNumber}</td>
+   <td>{props.record3.CustomerName3}</td>
+   <td>{props.record3.CustomerID3}</td>
+   <td>{props.record3.Delivery3}</td>
+   <td>{props.record3.Contact3}</td>
    <td>
-     <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
+     <Link className="btn btn-link" to={`/edit/${props.record3._id}`}>Edit</Link> |
      <button className="btn btn-link"
        onClick={() => {
-         props.deleteRecord(props.record._id);
+         props.deleterecord3(props.record3._id);
        }}
      >
        Delete
@@ -23,50 +23,50 @@ const Record = (props) => (
 );
  
 export default function RecordList() {
- const [records, setRecords] = useState([]);
+    const [record3s, setrecord3s] = useState([]);
  
- // This method fetches the records from the database.
+ // This method fetches the record3s from the database.
  useEffect(() => {
-   async function getRecords() {
-     const response = await fetch(`http://localhost:5000/record/`);
+   async function getrecord3s() {
+     const response = await fetch(`http://localhost:5000/record3/`);
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
        window.alert(message);
        return;
      }
-     const records = await response.json();
-     setRecords(records);
+     const record3s = await response.json();
+     setrecord3s(record3s);
    }
 
-   getRecords();
+   getrecord3s();
    return;
- }, [records.length]);
+ }, [record3s.length]);
  
- // This method will delete a record
- async function deleteRecord(id) {
+ // This method will delete a record3
+ async function deleterecord3(id) {
    await fetch(`http://localhost:5000/${id}`, {
      method: "DELETE"
    });
  
-   const newRecords = records.filter((el) => el._id !== id);
-   setRecords(newRecords);
+   const newrecord3s = record3s.filter((el) => el._id !== id);
+   setrecord3s(newrecord3s);
  }
  
- // This method will map out the records on the table
- function recordList() {
-   return records.map((record) => {
+ // This method will map out the record3s on the table
+ function record3List() {
+   return record3s.map((record3) => {
      return (
-       <Record
-         record={record}
-         deleteRecord={() => deleteRecord(record._id)}
-         key={record._id}
+       <record3
+         record3={record3}
+         deleterecord3={() => deleterecord3(record3._id)}
+         key={record3._id}
        />
      );
    });
  }
 
  
- // This following section will display the table with the records of individuals.
+ // This following section will display the table with the record3s of individuals.
  return (
 <div>
 <nav class="navbar navbar-expand-xl navbar-light bg-dark">
@@ -82,22 +82,22 @@ export default function RecordList() {
         </div>
       </nav>
    <div class="col-xs-1" align="center" style={{width: 1500}}>
-     <h1>Book Ordering</h1>
+     <h1>Book Management</h1>
      <table className="table table-hover" style={{ marginTop: 20}}>
        <thead>
          <tr>
-           <th>Order Number</th>
+           <th>Customer name</th>
            <th>Customer ID</th>
-           <th>Customer Delivery Address</th>
-           <th>Customer Contact Number</th>
+           <th>Delivery Address</th>
+           <th>Conatct Number</th>
            <th>Action</th>
          </tr>
        </thead>
-       <tbody>{recordList()}</tbody>
+       <tbody>{record3List()}</tbody>
      </table>
      <div class="d-flex flex-row-reverse">
-      <NavLink className="nav-link" to="/create">
-     <button class="btn btn-success d-flex flex-row" style={{marginLeft: 20, fontSize: 15 ,fontWeight:"bold"}}>+ Add Record</button>
+      <NavLink className="nav-link" to="/create3">
+     <button class="btn btn-success d-flex flex-row" style={{marginLeft: 20, fontSize: 15 ,fontWeight:"bold"}}>+ Add record</button>
      </NavLink>
    </div>
    </div>

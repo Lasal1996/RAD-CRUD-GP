@@ -6,10 +6,10 @@ import { NavLink } from "react-router-dom";
  
 export default function Create() {
  const [form, setForm] = useState({
-   name: "",
-   position: "",
-   delivery: "",
-   ContactNumber: "",
+   CustomerName3: "",
+   CustomerID3: "",
+   Delivery3: "",
+   Contact3: "",
  });
  const navigate = useNavigate();
  
@@ -24,10 +24,10 @@ export default function Create() {
 async function onSubmit(e) {
     e.preventDefault();
   
-    // When a post request is sent to the create url, we'll add a new record to the database.
+    // When a post request is sent to the create url, we'll add a new record3 to the database.
     const newPerson = { ...form };
   
-    await fetch("http://localhost:5000/record/add", {
+    await fetch("http://localhost:5000/record3/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,8 +39,8 @@ async function onSubmit(e) {
       return;
     });
   
-    setForm({ name: "", position: "", delivery: "", ContactNumber: "",});
-    navigate("/recordList");
+    setForm({ CustomerName3: "", CustomerID3: "", Delivery3: "", Contact3: "",});
+    navigate("/recordList3");
   }
  
  // This following section will display the form that takes the input from the user.
@@ -51,13 +51,13 @@ async function onSubmit(e) {
       <h1>Create New Record</h1>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Order Number</label>
+          <label htmlFor="name">Customer name</label>
           <input
-            type="number"
+            type="text"
             className="form-control"
-            id="name"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
+            id="CustomerName3"
+            value={form.CustomerName3}
+            onChange={(e) => updateForm({ CustomerName3: e.target.value })}
           />
         </div>
         <div className="form-group">
@@ -65,36 +65,35 @@ async function onSubmit(e) {
           <input
             type="number"
             className="form-control"
-            id="position"
-            value={form.position}
-            onChange={(e) => updateForm({ position: e.target.value })}
+            id="CustomerID3"
+            value={form.CustomerID3}
+            onChange={(e) => updateForm({ CustomerID3: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="delivery">Customer delivery Address</label>
+          <label htmlFor="Delivery3">Delivery Address</label>
           <input
             type="text"
             className="form-control"
-            id="delivery"
-            value={form.delivery}
-            onChange={(e) => updateForm({ delivery: e.target.value })}
+            id="Delivery3"
+            value={form.Delivery3}
+            onChange={(e) => updateForm({ Delivery3: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="ContactNumber">Customer Contact Number</label>
+          <label htmlFor="Contact3">Contact Number</label>
           <input
             type="number"
             className="form-control"
-            id="ContactNumber"
-            value={form.ContactNumber}
-            onChange={(e) => updateForm({ ContactNumber: e.target.value })}
+            id="Contact3"
+            value={form.Contact3}
+            onChange={(e) => updateForm({ Contact3: e.target.value })}
           />
         </div>
         <div className="form-group">
-
           <input
             type="submit"
-            value="Create Records"
+            value="Create Record"
             className="btn btn-primary"
           />
         </div>

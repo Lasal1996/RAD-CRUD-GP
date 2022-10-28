@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
  
-const Record = (props) => (
+const Record1 = (props) => (
  <tr>
-   <td>{props.record.name}</td>
-   <td>{props.record.position}</td>
-   <td>{props.record.delivery}</td>
-   <td>{props.record.ContactNumber}</td>
+   <td>{props.record1.orderno1}</td>
+   <td>{props.record1.totalprice1}</td>
+   <td>{props.record1.customerid1}</td>
+   <td>{props.record1.recieptNo1}</td>
    <td>
-     <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
+     <Link className="btn btn-link" to={`/edit/${props.record1._id}`}>Edit</Link> |
      <button className="btn btn-link"
        onClick={() => {
-         props.deleteRecord(props.record._id);
+         props.deleteRecord1(props.record1._id);
        }}
      >
        Delete
@@ -22,51 +22,51 @@ const Record = (props) => (
  </tr>
 );
  
-export default function RecordList() {
- const [records, setRecords] = useState([]);
+export default function Record1List() {
+ const [record1s, setRecord1s] = useState([]);
  
- // This method fetches the records from the database.
+ // This method fetches the record1s from the database.
  useEffect(() => {
-   async function getRecords() {
-     const response = await fetch(`http://localhost:5000/record/`);
+   async function getRecord1s() {
+     const response = await fetch(`http://localhost:5000/record1/`);
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
        window.alert(message);
        return;
      }
-     const records = await response.json();
-     setRecords(records);
+     const record1s = await response.json();
+     setRecord1s(record1s);
    }
 
-   getRecords();
+   getRecord1s();
    return;
- }, [records.length]);
+ }, [record1s.length]);
  
- // This method will delete a record
- async function deleteRecord(id) {
+ // This method will delete a record1
+ async function deleteRecord1(id) {
    await fetch(`http://localhost:5000/${id}`, {
      method: "DELETE"
    });
  
-   const newRecords = records.filter((el) => el._id !== id);
-   setRecords(newRecords);
+   const newRecord1s = record1s.filter((el) => el._id !== id);
+   setRecord1s(newRecord1s);
  }
  
- // This method will map out the records on the table
- function recordList() {
-   return records.map((record) => {
+ // This method will map out the record1s on the table
+ function record1List() {
+   return record1s.map((record1) => {
      return (
-       <Record
-         record={record}
-         deleteRecord={() => deleteRecord(record._id)}
-         key={record._id}
+       <Record1
+         record1={record1}
+         deleteRecord1={() => deleteRecord1(record1._id)}
+         key={record1._id}
        />
      );
    });
  }
 
  
- // This following section will display the table with the records of individuals.
+ // This following section will display the table with the record1s of individuals.
  return (
 <div>
 <nav class="navbar navbar-expand-xl navbar-light bg-dark">
@@ -82,21 +82,21 @@ export default function RecordList() {
         </div>
       </nav>
    <div class="col-xs-1" align="center" style={{width: 1500}}>
-     <h1>Book Ordering</h1>
+     <h1>Payment Management</h1>
      <table className="table table-hover" style={{ marginTop: 20}}>
        <thead>
          <tr>
            <th>Order Number</th>
+           <th>Total Price</th>
            <th>Customer ID</th>
-           <th>Customer Delivery Address</th>
-           <th>Customer Contact Number</th>
+           <th>Reciept Number</th>
            <th>Action</th>
          </tr>
        </thead>
-       <tbody>{recordList()}</tbody>
+       <tbody>{record1List()}</tbody>
      </table>
      <div class="d-flex flex-row-reverse">
-      <NavLink className="nav-link" to="/create">
+      <NavLink className="nav-link" to="/create1">
      <button class="btn btn-success d-flex flex-row" style={{marginLeft: 20, fontSize: 15 ,fontWeight:"bold"}}>+ Add Record</button>
      </NavLink>
    </div>

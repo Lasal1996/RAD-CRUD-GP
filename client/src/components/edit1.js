@@ -6,11 +6,11 @@ import Navbar from "./navbar";
  
 export default function Edit() {
  const [form, setForm] = useState({
-   name: "",
-   position: "",
-   delivery: "",
-   ContactNumber:"",
-   records: [],
+   orderno1: "",
+   totalprice1: "",
+   customerid1: "",
+   receiptNo1:"",
+   records1: [],
  });
  const params = useParams();
  const navigate = useNavigate();
@@ -29,7 +29,7 @@ export default function Edit() {
      const record = await response.json();
      if (!record) {
        window.alert(`Record with id ${id} not found`);
-       navigate("/recordList");
+       navigate("/");
        return;
      }
  
@@ -51,10 +51,10 @@ export default function Edit() {
  async function onSubmit(e) {
    e.preventDefault();
    const editedPerson = {
-     name: form.name,
-     position: form.position,
-     delivery: form.delivery,
-     ContactNumber: form.ContactNumber,
+     orderno1: form.orderno1,
+     totalprice1: form.totalprice1,
+     customerid1: form.customerid1,
+     receiptNo1: form.receiptNo1,
    };
  
    // This will send a post request to update the data in the database.
@@ -66,7 +66,7 @@ export default function Edit() {
      },
    });
  
-   navigate("/recordList");
+   navigate("/recordList1");
  }
  
  // This following section will display the form that takes input from the user to update the data.
@@ -81,52 +81,54 @@ export default function Edit() {
          <input
            type="number"
            className="form-control"
-           id="name"
-           value={form.name}
-           onChange={(e) => updateForm({ name: e.target.value })}
+           id="orderno1"
+           value={form.orderno1}
+           onChange={(e) => updateForm({ orderno1: e.target.value })}
          />
        </div>
 
        <div className="form-group">
-         <label htmlFor="position">Customer ID: </label>
+         <label htmlFor="totalprice1">Total Price: </label>
          <input
-           type="text"
+           type="number"
            className="form-control"
-           id="position"
-           value={form.position}
-           onChange={(e) => updateForm({ position: e.target.value })}
+           id="totalprice1"
+           value={form.totalprice1}
+           onChange={(e) => updateForm({ totalprice1: e.target.value })}
          />
        </div>
        
        <div className="form-group">
-         <label htmlFor="delivery">Customer Delivery Address: </label>
+         <label htmlFor="customerid1">Customer ID: </label>
          <input
-           type="text"
+           type="number"
            className="form-control"
-           id="delivery"
-           value={form.delivery}
-           onChange={(e) => updateForm({ delivery: e.target.value })}
+           id="customerid1"
+           value={form.customerid1}
+           onChange={(e) => updateForm({ customerid1: e.target.value })}
          />
        </div>
 
        <div className="form-group">
-         <label htmlFor="ContactNumber">Customer Contact Number: </label>
+         <label htmlFor="receiptNo1">Reciept Number: </label>
          <input
-           type="text"
+           type="number"
            className="form-control"
-           id="ContactNumber"
-           value={form.ContactNumber}
-           onChange={(e) => updateForm({ ContactNumber: e.target.value })}
+           id="receiptNo1"
+           value={form.receiptNo1}
+           onChange={(e) => updateForm({ receiptNo1: e.target.value })}
          />
        </div>
        <br />
  
        <div className="form-group">
-                 <input
+        <NavLink className="nav-link" to="/recordList1">
+         <input
            type="submit"
            value="Update Record"
            className="btn btn-primary"
          />
+         </NavLink>
        </div>
      </form>
    </div>
